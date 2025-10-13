@@ -1,103 +1,40 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-row items-center gap-4">
+          <Image className="" src="/logo-fsm.png" alt="FoodStockMate" width={180} height={180} />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <h1 className="text-4xl md:text-6xl font-bold  leading-tight">Never forget What's in your <span className="text-[#1DCD9F] block text-primary mt-2 text-center">Fridge again</span></h1>
+        <p className="text-xl mt-5 mb-5 text-[#93A2B7] text-muted-foreground max-w-2xl mx-auto">Keep track of all your fridge items, monitor expiry dates, and reduce food waste with FoodStockMate's simple and beautiful inventory manager</p>
+       <div className="flex flex-row items-center gap-4">
+        <button className="px-10 py-3 rounded-md bg-[#1DCD9F] text-black font-bold hover:bg-[#1DCD9F]/80">
+          <Link href="/login">Get Started</Link>
+        </button>
+       </div>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-8 mt-16 text-left">
+        <div className="p-6 rounded-lg bg-[#192234] border-[#293851] border border-border transition-all">
+        <Image className="mb-3" src="/track.svg" alt="track" width={36} height={36} />
+          <h2 className="text-xl font-bold">Track Everything</h2>
+          <p className="text-lg mt-3 text-[#93A2B7] text-muted-foreground max-w-2xl mx-auto">Add, edit, and manage all your fridge items in one place with detailed information.</p>
+        </div>
+        <div className="p-6 rounded-lg bg-[#192234] border-[#293851] border border-border transition-all">
+        <Image className="mb-3" src="/noti.svg" alt="notification" width={36} height={36} />
+          <h2 className="text-xl font-bold">Expiry Alerts</h2>
+          <p className="text-lg mt-3 text-[#93A2B7] text-muted-foreground max-w-2xl mx-auto">Set expiry dates for your items and get alerts when they're about to expire.</p>
+        </div>
+        <div className="p-6 rounded-lg bg-[#192234] border-[#293851] border border-border transition-all">
+        <Image className="mb-3" src="/grocery.svg" alt="grocery" width={36} height={36} />
+          <h2 className="text-xl font-bold">Reduce Waste</h2>
+          <p className="text-lg mt-3 text-[#93A2B7] text-muted-foreground max-w-2xl mx-auto">Reduce food waste by tracking your items and using them before they expire.</p>
+        </div>
+      </div>
+      
     </div>
   );
 }
