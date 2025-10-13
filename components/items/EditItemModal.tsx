@@ -27,8 +27,9 @@ export function EditItemModal({ item, onClose, onSubmit }: {
     try {
       await onSubmit(form)
       onClose()
-    } catch (e: any) {
-      setErr(e?.message ?? "Failed to update")
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "Failed to update"
+      setErr(message)
     } finally {
       setSubmitting(false)
     }

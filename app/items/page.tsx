@@ -1,7 +1,7 @@
 "use client"
 import { useAuth } from "@/contexts/AuthContext"
 import Link from "next/link"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useItems } from "@/hooks/useItems"
 import { ItemCard } from "@/components/items/ItemCard"
 import { EditItemModal } from "@/components/items/EditItemModal"
@@ -12,6 +12,7 @@ export default function Item() {
     const { items, searching, error, updateItem, deleteItem, searchItems } = useItems(user?.token)
     const [editingItem, setEditingItem] = useState<Item | null>(null)
     const [search, setSearch] = useState("")
+    const searchTimerRef = useRef<number | null>(null)
    
     if (error) return <div>Error: {error}</div>
 
@@ -27,8 +28,10 @@ export default function Item() {
                         onChange={(e) => {
                             const val = e.target.value
                             setSearch(val)
-                            clearTimeout((window as any).__searchTimer)
-                            ;(window as any).__searchTimer = setTimeout(() => {
+                            if (searchTimerRef.current) {
+                                clearTimeout(searchTimerRef.current)
+                            }
+                            searchTimerRef.current = window.setTimeout(() => {
                                 searchItems(val)
                             }, 350)
                         }}

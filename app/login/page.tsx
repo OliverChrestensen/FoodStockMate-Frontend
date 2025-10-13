@@ -8,7 +8,7 @@ import { useAuth } from "@/contexts/AuthContext"
 export default function LoginPage() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [email, setEmail] = useState("")
+  // const [email, setEmail] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState("")
   const [isLogin, setIsLogin] = useState(true)
@@ -33,8 +33,9 @@ export default function LoginPage() {
         const errorText = await res.text()
         throw new Error(errorText || "Login failed")
       }
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Login failed"
+      setError(message)
     }
   }
 
@@ -61,8 +62,9 @@ export default function LoginPage() {
         const errorText = await res.text();
         setError("❌ Failed to register: " + errorText);
       }
-    } catch (err: any) {
-      setError("⚠️ Something went wrong: " + err);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Registration failed"
+      setError("⚠️ Something went wrong: " + message);
     }
   }
 
@@ -84,7 +86,7 @@ export default function LoginPage() {
       localStorage.setItem("userType", "guest")
 
       router.push("/items")
-    } catch (err: any) {
+    } catch (err) {
       setError("Guest account not available. Please contact administrator.")
     }
   }
