@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/AuthContext"
+import { API_URL } from "@/lib/api"
 
 export default function AddItem() {
     const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ export default function AddItem() {
         setError("")
 
         try {
-            const res = await fetch("http://localhost:8080/api/items", {
+            const res = await fetch(`${API_URL}/api/items`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
