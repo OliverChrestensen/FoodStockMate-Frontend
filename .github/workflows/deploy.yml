@@ -30,7 +30,16 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /opt/docker/FoodStockMate-Frontend
+
+            # Stop and remove old container
             docker stop foodstockmate-frontend || true
             docker rm foodstockmate-frontend || true
+
+            # Build new Docker image
             docker build -t foodstockmate-frontend .
-            docker run -d -p 3000:3000 --name foodstockmate-frontend foodstockmate-frontend
+
+            # Run new container
+            docker run -d --name foodstockmate-frontend -p 3000:3000 foodstockmate-frontend
+
+            # Connect container to Nginx-proxy-manager network
+            docker network connect nginx-proxy-manager_default foodstockmate-frontend || true
